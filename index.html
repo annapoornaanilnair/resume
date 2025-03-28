@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Resume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        .info {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        .submit-btn {
+            background: blue;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+
+        .success {
+            color: green;
+            font-size: 14px;
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function validateForm ()
+        {
+            let valid = true;
+
+            // Name Validation
+            let name = document.getElementById( "name" ).value;
+            let nameError = document.getElementById( "nameError" );
+            if ( name.trim() === "" )
+            {
+                nameError.style.display = "block";
+                nameError.innerText = "Name cannot be empty";
+                valid = false;
+            } else
+            {
+                nameError.style.display = "none";
+            }
+
+            // Email Validation
+            let email = document.getElementById( "email" ).value;
+            let emailError = document.getElementById( "emailError" );
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if ( !emailPattern.test( email ) )
+            {
+                emailError.style.display = "block";
+                emailError.innerText = "Invalid email format";
+                valid = false;
+            } else
+            {
+                emailError.style.display = "none";
+            }
+
+            // Phone Validation
+            let phone = document.getElementById( "phone" ).value;
+            let phoneError = document.getElementById( "phoneError" );
+            let phonePattern = /^[0-9]{10}$/;
+            if ( !phonePattern.test( phone ) )
+            {
+                phoneError.style.display = "block";
+                phoneError.innerText = "Phone must be 10 digits";
+                valid = false;
+            } else
+            {
+                phoneError.style.display = "none";
+            }
+
+            // Education Validation
+            let education = document.getElementById( "education" ).value;
+            let educationError = document.getElementById( "educationError" );
+            if ( education.trim() === "" )
+            {
+                educationError.style.display = "block";
+                educationError.innerText = "Education cannot be empty";
+                valid = false;
+            } else
+            {
+                educationError.style.display = "none";
+            }
+
+            // Skills Validation
+            let skills = document.getElementById( "skills" ).value;
+            let skillsError = document.getElementById( "skillsError" );
+            if ( skills.trim() === "" )
+            {
+                skillsError.style.display = "block";
+                skillsError.innerText = "Skills cannot be empty";
+                valid = false;
+            } else
+            {
+                skillsError.style.display = "none";
+            }
+
+            let successMessage = document.getElementById( "successMessage" );
+            if ( valid )
+            {
+                successMessage.style.display = "block";
+                successMessage.innerText = "Form submitted successfully!";
+            } else
+            {
+                successMessage.style.display = "none";
+            }
+
+            return valid;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>My Resume</h1>
+        <div class="info">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" value="John Doe">
+            <span class="error" id="nameError"></span>
+        </div>
+        <div class="info">
+            <label for="email">Email:</label>
+            <input type="email" id="email" value="john.doe@example.com">
+            <span class="error" id="emailError"></span>
+        </div>
+        <div class="info">
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" value="1234567890">
+            <span class="error" id="phoneError"></span>
+        </div>
+        <div class="info">
+            <label for="education">Education:</label>
+            <textarea id="education">B.Tech in Computer Science</textarea>
+            <span class="error" id="educationError"></span>
+        </div>
+        <div class="info">
+            <label for="skills">Skills:</label>
+            <input type="text" id="skills" value="Java, Python, Selenium">
+            <span class="error" id="skillsError"></span>
+        </div>
+        <button class="submit-btn" id="submit" onclick="return validateForm()">Submit</button>
+        <span class="success" id="successMessage"></span>
+    </div>
+</body>
+
+</html>
